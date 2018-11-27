@@ -1,2 +1,7 @@
 venv/
 .vscode
+__pycache__
+code_snippets
+test_data
+model.wv
+word2vec.model
