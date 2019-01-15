@@ -1,3 +1,6 @@
 [submodule "personality-detection"]
 	path = personality-detection
 	url = git@github.com:SenticNet/personality-detection.git
+[submodule "python-stanford-corenlp"]
+	path = python-stanford-corenlp
+	url = git@github.com:stanfordnlp/python-stanford-corenlp.git
