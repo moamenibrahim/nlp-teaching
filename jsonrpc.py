@@ -373,7 +373,7 @@ class JsonRpc10:
         """
         try:
             data = self.loads(string)
-        except ValueError, err:
+        except ValueError:
             raise RPCParseError("No valid JSON. (%s)" % str(err))
         if not isinstance(data, dict):  raise RPCInvalidRPC("No valid RPC-package.")
         if "method" not in data:        raise RPCInvalidRPC("""Invalid Request, "method" is missing.""")
@@ -401,7 +401,7 @@ class JsonRpc10:
         """
         try:
             data = self.loads(string)
-        except ValueError, err:
+        except ValueError:
             raise RPCParseError("No valid JSON. (%s)" % str(err))
         if not isinstance(data, dict):  raise RPCInvalidRPC("No valid RPC-package.")
         if "id" not in data:            raise RPCInvalidRPC("""Invalid Response, "id" missing.""")
@@ -554,7 +554,7 @@ class JsonRpc20:
         """
         try:
             data = self.loads(string)
-        except ValueError, err:
+        except ValueError:
             raise RPCParseError("No valid JSON. (%s)" % str(err))
         if not isinstance(data, dict):  raise RPCInvalidRPC("No valid RPC-package.")
         if "jsonrpc" not in data:       raise RPCInvalidRPC("""Invalid Response, "jsonrpc" missing.""")
@@ -590,7 +590,7 @@ class JsonRpc20:
         """
         try:
             data = self.loads(string)
-        except ValueError, err:
+        except ValueError:
             raise RPCParseError("No valid JSON. (%s)" % str(err))
         if not isinstance(data, dict):  raise RPCInvalidRPC("No valid RPC-package.")
         if "jsonrpc" not in data:       raise RPCInvalidRPC("""Invalid Response, "jsonrpc" missing.""")
@@ -653,7 +653,7 @@ def log_dummy( message ):
     pass
 def log_stdout( message ):
     """print message to STDOUT"""
-    print message
+    print(message)
 
 def log_file( filename ):
     """return a logfunc which logs to a file (in utf-8)"""
@@ -725,11 +725,11 @@ class TransportSTDINOUT(Transport):
     """
     def send(self, string):
         """write data to STDOUT with '***SEND:' prefix """
-        print "***SEND:"
-        print string
+        print("***SEND:")
+        print(string)
     def recv(self):
         """read data from STDIN"""
-        print "***RECV (please enter, ^D ends.):"
+        print("***RECV (please enter, ^D ends.):")
         return sys.stdin.read()
 
 
@@ -902,7 +902,7 @@ class ServerProxy:
             req_str  = self.__data_serializer.dumps_request( methodname, kwargs, id )
         try:
             resp_str = self.__transport.sendrecv( req_str )
-        except Exception,err:
+        except Exception:
             raise RPCTransportError(err)
         resp = self.__data_serializer.loads_response( resp_str )
         return resp[0]
@@ -1028,9 +1028,9 @@ class Server:
                 notification = True
             else:                   #request
                 method, params, id = req
-        except RPCFault, err:
+        except RPCFault:
             return self.__data_serializer.dumps_error( err, id=None )
-        except Exception, err:
+        except Exception:
             self.log( "%d (%s): %s" % (INTERNAL_ERROR, ERROR_MESSAGE[INTERNAL_ERROR], str(err)) )
             return self.__data_serializer.dumps_error( RPCFault(INTERNAL_ERROR, ERROR_MESSAGE[INTERNAL_ERROR]), id=None )
 
@@ -1044,11 +1044,11 @@ class Server:
                 result = self.funcs[method]( **params )
             else:
                 result = self.funcs[method]( *params )
-        except RPCFault, err:
+        except RPCFault:
             if notification:
                 return None
             return self.__data_serializer.dumps_error( err, id=None )
-        except Exception, err:
+        except Exception:
             if notification:
                 return None
             self.log( "%d (%s): %s" % (INTERNAL_ERROR, ERROR_MESSAGE[INTERNAL_ERROR], str(err)) )
@@ -1058,7 +1058,7 @@ class Server:
             return None
         try:
             return self.__data_serializer.dumps_response( result, id )
-        except Exception, err:
+        except Exception:
             self.log( "%d (%s): %s" % (INTERNAL_ERROR, ERROR_MESSAGE[INTERNAL_ERROR], str(err)) )
             return self.__data_serializer.dumps_error( RPCFault(INTERNAL_ERROR, ERROR_MESSAGE[INTERNAL_ERROR]), id )
 

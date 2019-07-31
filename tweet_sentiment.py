@@ -1,10 +1,10 @@
 import nltk
 
 pos_tweets = [('I love this car', 'positive'),
-             ('This view is amazing', 'positive'),
-             ('I feel great this morning', 'positive'),
-             ('I am so excited about the concert', 'positive'),
-             ('He is my best friend', 'positive')]
+              ('This view is amazing', 'positive'),
+              ('I feel great this morning', 'positive'),
+              ('I am so excited about the concert', 'positive'),
+              ('He is my best friend', 'positive')]
 
 neg_tweets = [('I do not like this car', 'negative'),
               ('This view is horrible', 'negative'),
@@ -14,7 +14,7 @@ neg_tweets = [('I do not like this car', 'negative'),
 
 tweets = []
 for (words, sentiment) in pos_tweets + neg_tweets:
-    words_filtered = [e.lower() for e in words.split() if len(e) >= 3] 
+    words_filtered = [e.lower() for e in words.split() if len(e) >= 3]
     tweets.append((words_filtered, sentiment))
 
 tweets = [
@@ -36,16 +36,19 @@ test_tweets = [
     (['house', 'not', 'great'], 'negative'),
     (['your', 'song', 'annoying'], 'negative')]
 
+
 def get_words_in_tweets(tweets):
     all_words = []
     for (words, sentiment) in tweets:
-      all_words.extend(words)
+        all_words.extend(words)
     return all_words
+
 
 def get_word_features(wordlist):
     wordlist = nltk.FreqDist(wordlist)
     word_features = wordlist.keys()
     return word_features
+
 
 def extract_features(document):
     document_words = set(document)
@@ -54,9 +57,11 @@ def extract_features(document):
         features['contains(%s)' % word] = (word in document_words)
     return features
 
+
 training_set = nltk.classify.apply_features(extract_features, tweets)
 
 classifier = nltk.NaiveBayesClassifier.train(training_set)
+
 
 def train(labeled_featuresets, estimator=ELEProbDist):
     ...
@@ -67,6 +72,7 @@ def train(labeled_featuresets, estimator=ELEProbDist):
     feature_probdist = {}
     ...
     return NaiveBayesClassifier(label_probdist, feature_probdist)
+
 
 print(label_probdist.prob('positive'))
 print(label_probdist.prob('negative'))
@@ -82,6 +88,7 @@ print(classifier.classify(extract_features(tweet.split())))
 
 print(extract_features(tweet.split()))
 
+
 def classify(self, featureset):
     # Discard any feature names that we've never seen before.
     # Find the log probability of each label, given the features.
@@ -90,6 +97,7 @@ def classify(self, featureset):
     # Return the sample with the greatest probability from the probability
     # distribution dictionary
     return
+
 
 tweet = 'Your song is annoying'
 print(classifier.classify(extract_features(tweet.split())))

@@ -16,14 +16,14 @@ SENTENCES_COUNT = 10
 
 
 if __name__ == "__main__":
- url = "https://www.expat-finland.com/housing/finding_housing_in_finland.html"
- parser = HtmlParser.from_url(url, Tokenizer(LANGUAGE))
- # or for plain text files
- # parser = PlaintextParser.from_file("document.txt", Tokenizer(LANGUAGE))
- stemmer = Stemmer(LANGUAGE)
+    url = "https://www.expat-finland.com/housing/finding_housing_in_finland.html"
+    parser = HtmlParser.from_url(url, Tokenizer(LANGUAGE))
+    # or for plain text files
+    # parser = PlaintextParser.from_file("document.txt", Tokenizer(LANGUAGE))
+    stemmer = Stemmer(LANGUAGE)
 
- summarizer = Summarizer(stemmer)
- summarizer.stop_words = get_stop_words(LANGUAGE)
+    summarizer = Summarizer(stemmer)
+    summarizer.stop_words = get_stop_words(LANGUAGE)
 
- for sentence in summarizer(parser.document, SENTENCES_COUNT):
-  print(sentence)
+    for sentence in summarizer(parser.document, SENTENCES_COUNT):
+        print(sentence)
