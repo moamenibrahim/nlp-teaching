@@ -74,6 +74,7 @@ jedi==0.12.1
 jeepney==0.4
 Jinja2==2.10
 jmespath==0.9.3
+jsonrpc==1.2
 jsonschema==2.6.0
 jupyter==1.0.0
 jupyter-client==5.2.3
@@ -121,7 +122,6 @@ pep8==1.7.1
 pexpect==4.7.0
 pickleshare==0.7.4
 Pillow==5.2.0
-pkg-resources==0.0.0
 pkginfo==1.4.2
 pluggy==0.7.1
 ply==3.11
@@ -154,6 +154,7 @@ pytest-openfiles==0.3.0
 pytest-remotedata==0.3.0
 python-dateutil==2.7.5
 python-Levenshtein==0.12.0
+PyTLDR==0.1.4
 pytz==2018.5
 PyWavelets==1.0.0
 PyYAML==5.1
