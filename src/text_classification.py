@@ -11,7 +11,8 @@ from keras.preprocessing import text, sequence
 from keras import layers, models, optimizers
 
 # load the dataset
-data = open('data/corpus').read()
+# Data source: https://gist.github.com/kunalj101/ad1d9c58d338e20d09ff26bcc06c4235
+data = open('..\\data\\corpus').read()
 labels, texts = [], []
 for i, line in enumerate(data.split("\n")):
     content = line.split()

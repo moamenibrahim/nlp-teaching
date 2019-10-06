@@ -7,3 +7,4 @@ model.wv
 word2vec.model
 ISEAR.csv
 empath-client
+data
