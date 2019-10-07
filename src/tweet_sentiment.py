@@ -53,7 +53,7 @@ def get_word_features(wordlist):
 def extract_features(document):
     document_words = set(document)
     features = {}
-    for word in word_features:
+    for word in get_word_features(document_words):
         features['contains(%s)' % word] = (word in document_words)
     return features
 
