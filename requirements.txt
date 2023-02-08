@@ -32,7 +32,7 @@ colorama==0.3.9
 comtypes==1.1.7
 constantly==15.1.0
 contextlib2==0.5.5
-cryptography==3.3.2
+cryptography==39.0.1
 cssselect==1.0.3
 cycler==0.10.0
 Cython==0.28.5
