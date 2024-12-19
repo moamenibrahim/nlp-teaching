@@ -58,7 +58,7 @@ glob2==0.6
 google-ngram-downloader==4.0.1
 google-pasta==0.1.7
 greenlet==0.4.15
-grpcio==1.53.0
+grpcio==1.53.2
 h5py==2.8.0
 HeapDict==1.0.0
 html5lib==1.0.1
